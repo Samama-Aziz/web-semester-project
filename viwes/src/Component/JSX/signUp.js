@@ -28,29 +28,29 @@ const Signup = () => {
     setuser({...user, [name]:value});
     console.log(user);
   }
-  const postData = async (e) => {
+  // const postData = async (e) => {
 
-    e.preventDefault();
-    const { Name, email, password } = user;
+  //   e.preventDefault();
+  //   const { Name, email, password } = user;
 
-    const res = await fetch('/Registration', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        Name, email, password
-      })
+  //   const res = await fetch('/Registration', {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify({
+  //       Name, email, password
+  //     })
 
-    });
-    const data = await res.json();
-    if (res.status === 422 || !data) {
-      window.alert("User already Exist"); console.log("User already Exist");
-    } else {
-      window.alert(" Registration Successfull"); console.log("Successfull Registration");
-      navigate("/");
-    }
-  }
+  //   });
+  //   const data = await res.json();
+  //   if (res.status === 422 || !data) {
+  //     window.alert("User already Exist"); console.log("User already Exist");
+  //   } else {
+  //     window.alert(" Registration Successfull"); console.log("Successfull Registration");
+  //     navigate("/");
+  //   }
+  // }
     const handleToggle = () => {
 
       if (type === 'password') {
@@ -84,7 +84,7 @@ const Signup = () => {
             <label htmlFor="password" className='label'>Password</label>
             <span onClick={handleToggle} className='icon'><Icon icon={icon} size={20} color='black' /></span>
           </div>
-          <button type="submit" className='Login' onClick={postData}>Create</button>
+          <NavLink to="/dashboard"><button type="submit" className='Login'>Create</button></NavLink>
           <div className='Sigin-Up' > <h1>Have an account?<span><NavLink to="/"> Sign in</NavLink></span></h1>
           </div>
         </form>

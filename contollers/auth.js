@@ -1,26 +1,20 @@
 const express = require('express');
 const Routers = express.Router();
-const login = require('../viwes/src/Component/JSX/Login')
-const signUp = require('../viwes/src/Component/JSX/signUp')
-const dashboard = require('../viwes/src/Component/JSX/Dashboard')
 
 
-
-
-
-
-//------------------------------ADD SHOP--------------------------------------------
 Routers.get('/', async (req, res) => {
-    <login/>
+    res.send('<h1>Welcome</h1>');
 });
+
 Routers.get('/login', async (req, res) => {
-    <login/>
-});
+    res.send("login");});
+
 Routers.get('/Signup', async (req, res) => {
-    <signUp/>
+    res.send("signUp"); 
 });
+
 Routers.get('/dashboard', async (req, res) => {
-    <dashboard/>
+    res.send("dashboard"); 
 });
 
 module.exports = Routers;

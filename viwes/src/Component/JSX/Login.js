@@ -30,28 +30,28 @@ const Login = () => {
       setType('password');
     }
   }
-  const Userlogin = async (e) => {
+  // const Userlogin = async (e) => {
 
-    e.preventDefault();
+  //   e.preventDefault();
 
-    const res = await fetch('/login', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        email, password
-      })
+  //   const res = await fetch('/login', {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify({
+  //       email, password
+  //     })
 
-    });
-    const data = await res.json();
-    if (res.status === 400 || !data) {
-      window.alert("Invalid Credentials");
-    } else {
-      window.alert(" Sign in Successfull");
-      navigate("/dashboard");
-    }
-  }
+  //   });
+  //   const data = await res.json();
+  //   if (res.status === 400 || !data) {
+  //     window.alert("Invalid Credentials");
+  //   } else {
+  //     window.alert(" Sign in Successfull");
+  //     navigate("/dashboard");
+  //   }
+  // }
   
 
   return (
@@ -70,7 +70,7 @@ const Login = () => {
           <label htmlFor="password" className='label'>Password</label>
           <span onClick={handleToggle} className='icon'><Icon icon={icon} size={20} color='black' /></span>
         </div>
-        <button type="submit" className='Login' onClick={Userlogin}>Login</button>
+        <NavLink to="/dashboard"><button type="submit" className='Login'>Login</button></NavLink>
       <div className='Sigin-Up' > <h1>No account?<span><NavLink to="/signUp"> Sign up</NavLink></span></h1>
       </div>
       </form>
