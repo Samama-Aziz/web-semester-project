@@ -3,7 +3,7 @@ import Login from "./Component/JSX/Login";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Dashboard from './Component/JSX/Dashboard';
 import Signup from './Component/JSX/signUp';
-import './index.css'
+import 'bootstrap/dist/css/bootstrap.css';
 
 const App = () => {
   return (

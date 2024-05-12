@@ -1,4 +1,5 @@
-import React, { useState,useEffect } from 'react';
+// import React, { useState,useEffect } from 'react';
+import React from 'react';
 import Sidebar from './Sidebar';
 import '../CSS/Shop.css';
 
@@ -107,7 +108,7 @@ const Dashboard = () => {
             <Sidebar />
             <div className="pagedata">
                 <div className="title">
-                    <h2>Finance Dashboard</h2>
+                    <h2>Pasia Care</h2>
                 </div>
                 {/* <div className="card-row"> */}
                 <div class="ag-courses_box">
@@ -162,7 +163,7 @@ const Dashboard = () => {
                             <div class="ag-courses-item_bg"></div>
 
                             <div class="ag-courses-item_title">
-                                <h1>Total Account Balance</h1>
+                                <h1>Total Balance</h1>
                             </div>
 
                             <div class="ag-courses-item_date-box">

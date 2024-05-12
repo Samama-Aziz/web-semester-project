@@ -54,7 +54,6 @@ body{
 }
 .input-container1 label{
     position: absolute;
-    bottom: 5px;
     left: 5px;
     color: rgb(150,150,150);
     cursor: text;
@@ -70,6 +69,12 @@ body{
     font-size: 16px;
     color: rgb(80,80,80);
     transition: 0.5s ease-in-out;
+}
+small{
+    color: red;
+    font-size: 8px;
+    margin-left: 5px;
+    height: 2px;
 }
 
 .text-input1:focus,
@@ -148,3 +153,4 @@ body{
     color:#3366CC;
     -webkit-font-smoothing: auto !important;
   }
+ 

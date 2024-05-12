@@ -94,12 +94,13 @@
 }  */
 
 .ag-courses_box {
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: start;
-  -ms-flex-align: start;
-  align-items: flex-start;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 
@@ -109,7 +110,7 @@
   -ms-flex-preferred-size: calc(33.33333% - 30px);
   flex-basis: calc(33.33333% - 30px);
 
-  margin: 0 15px 30px;
+  margin: 20px;
 
   overflow: hidden;
 
@@ -121,7 +122,7 @@
   background-color: rgb(26, 26, 26);
 
   overflow: hidden;
-
+  padding: 20px;
   position: relative;
 }
 

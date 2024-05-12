@@ -1,5 +1,6 @@
 import "../CSS/Sidebar.css";
-import { AccountBalanceWalletRounded, AttachMoneyRounded, BarChartRounded, DashboardRounded, MonetizationOnRounded, PaymentRounded, TrendingUpRounded, AssessmentRounded } from '@mui/icons-material';
+import React from 'react';
+import { AccountBalanceWalletRounded, AttachMoneyRounded, DashboardRounded, MonetizationOnRounded, PaymentRounded, TrendingUpRounded, AssessmentRounded } from '@mui/icons-material';
 import logo from '../Images/IMG_3028.JPG'
 import { NavLink } from "react-router-dom";
 
