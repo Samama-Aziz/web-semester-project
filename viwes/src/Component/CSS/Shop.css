@@ -455,7 +455,7 @@
 .search {
   display: flex;
   width: 30%;
-  height: 25px;
+  height: 50px;
   border: 2px solid #d3d3d3;
   padding: 10px 20px;
   font-size: 1.2rem;
