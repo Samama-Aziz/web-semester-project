@@ -5,7 +5,7 @@ const userScheam = new mongeese.Schema({
         type: String,
         required:true
     },
-    Income_Source:{
+    note:{
         type: String,
         required:true
     },
