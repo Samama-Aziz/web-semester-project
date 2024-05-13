@@ -7,13 +7,11 @@ require('./DB/connection');
 const port = process.env.PORT;
 
 app.use(express.json());
-app.use(require('./auth'));
+app.use(require('./Routers'));
 
 
 
 app.listen(port,() =>{
     console.log(`Sever is running at localhost ${port}`);
-
-
     
 })

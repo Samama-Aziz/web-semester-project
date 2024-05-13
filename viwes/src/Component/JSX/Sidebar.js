@@ -1,16 +1,14 @@
 import "../CSS/Sidebar.css";
 import React from 'react';
-import { AccountBalanceWalletRounded, AttachMoneyRounded, DashboardRounded, MonetizationOnRounded, PaymentRounded, TrendingUpRounded, AssessmentRounded } from '@mui/icons-material';
-import logo from '../Images/IMG_3028.JPG'
+import logo from '../Images/logo.jpeg'
 import { NavLink } from "react-router-dom";
+import { Dashboard, AttachMoney, Payment, TrendingUp, AccountBalanceWallet, Assessment, Person, ExitToApp } from '@mui/icons-material';
 
 function App() {
   return (
     <div className="App">
       <div className="sidebar_container">
-        {/* sidebar div */}
         <div className="sidebar">
-          {/* profile */}
           <div className="profile">
             <NavLink to='/'>
               <img className="Logo"
@@ -19,33 +17,35 @@ function App() {
               />
             </NavLink>
           </div>
-          {/* groups */}
           <div className="groups">
-            {/* group 1 */}
             <div className="group">
               <NavLink to='/dashboard' className='nav-links'>
-                <DashboardRounded className="icon" style={{ color: 'white' }} /> <span>Dashboard</span>
+                <Dashboard className="icon" style={{ color: 'white' }} /> <span>Dashboard</span>
               </NavLink>
               <NavLink to='/income' className='nav-links'>
-                <AttachMoneyRounded className="icon" style={{ color: 'white' }} /> <span>Income</span>
+                <AttachMoney className="icon" style={{ color: 'white' }} /> <span>Income</span>
               </NavLink>
               <NavLink to='/expenses' className='nav-links'>
-                <PaymentRounded className="icon" style={{ color: 'white' }} /> <span>Expenses</span>
+                <Payment className="icon" style={{ color: 'white' }} /> <span>Expenses</span>
               </NavLink>
               <NavLink to='/investments' className='nav-links'>
-                <TrendingUpRounded className="icon" style={{ color: 'white' }} /> <span>Investments</span>
+                <TrendingUp className="icon" style={{ color: 'white' }} /> <span>Investments</span>
               </NavLink>
             </div>
-            {/* group 2 */}
             <div className="group">
               <NavLink to='/accounts' className='nav-links'>
-                <AccountBalanceWalletRounded className="icon" style={{ color: 'white' }} /><span>Accounts</span>
-              </NavLink>
-              <NavLink to='/budget' className='nav-links'>
-                <MonetizationOnRounded className="icon" style={{ color: 'white' }} /> <span>Budget</span>
+                <AccountBalanceWallet className="icon" style={{ color: 'white' }} /><span>Accounts</span>
               </NavLink>
               <NavLink to='/reports' className='nav-links'>
-                <AssessmentRounded className="icon" style={{ color: 'white' }} /> <span>Reports</span>
+                <Assessment className="icon" style={{ color: 'white' }} /> <span>Reports</span>
+              </NavLink>
+            </div>
+            <div className="group">
+              <NavLink to='/Profile' className='nav-links'>
+                <Person className="icon" style={{ color: 'white' }} /><span>Profile</span>
+              </NavLink>
+              <NavLink to='/login' className='nav-links'>
+                <ExitToApp className="icon" style={{ color: 'white' }} /> <span>Logout</span>
               </NavLink>
             </div>
           </div>

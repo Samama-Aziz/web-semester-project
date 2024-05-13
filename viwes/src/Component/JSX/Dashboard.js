@@ -1,108 +1,12 @@
-// import React, { useState,useEffect } from 'react';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import '../CSS/Shop.css';
 
-
 const Dashboard = () => {
-    // const [StockData, setStockData] = useState([]);
-    // const [SaleData, setSaleData] = useState([]);
-    // const [SaleCount, setSaleCount] = useState(0);
-    // const [StockNumber, setStockNumber] = useState(0);
-    // const [CustomerCount, setCustomerCount] = useState(0);
-    // const [TotalInvestment, settotalInvestment] = useState(0);
-    // const [TotalReturn, setTotalReturn] = useState(0);
-    // const [TotalCredit, setTotalCredit] = useState(0);
-    // const [CustomerData, setCustomerData] = useState([]);
+    const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     getnumbersofStock();
-    //     getCustomerCount();
-    //     getSaleCount();
-    //     gettotalInvestment();
-    //     getTotalReturn();
-    //     getTotalCredit();
-    // }, []);
-    
-    
-    //     //---------------------------------------------GET NUMBER OF STOCKS FROM DATABASE-------------------------------------------
-    //     const getnumbersofStock = async (e) => {
-    //         const res = await fetch('/Stockcount', {
-    //             method: "GET",
-    //             headers: {
-    //                 Accept: "application/json",
-    //                 "Content-Type": "application/json"
-    //             },
-    //         });
-    //         const Data = await res.json();
-    //         setStockNumber(Data);
-    
-    //     }
-    //     //---------------------------------------------GET CUSTOMER COUNT FROM DATABASE-------------------------------------------
-    //     const getCustomerCount = async (e) => {
-    //         const res = await fetch('/Customercount', {
-    //             method: "GET",
-    //             headers: {
-    //                 Accept: "application/json",
-    //                 "Content-Type": "application/json"
-    //             },
-    //         });
-    //         const Data = await res.json();
-    //         setCustomerCount(Data);
-    
-    //     }
-    //     //---------------------------------------------GET SALE COUNT FROM DATABASE-------------------------------------------
-    //     const getSaleCount = async (e) => {
-    //         const res = await fetch('/Salecount', {
-    //             method: "GET",
-    //             headers: {
-    //                 Accept: "application/json",
-    //                 "Content-Type": "application/json"
-    //             },
-    //         });
-    //         const Data = await res.json();
-    //         setSaleCount(Data);
-    
-    //     }
-    //     //---------------------------------------------GET TOTAL INVESTMENT FROM DATABASE-------------------------------------------
-    //     const gettotalInvestment = async (e) => {
-    //         const res = await fetch('/totalInvestment', {
-    //             method: "GET",
-    //             headers: {
-    //                 Accept: "application/json",
-    //                 "Content-Type": "application/json"
-    //             },
-    //         });
-    //         const Data = await res.json();
-    //         settotalInvestment(Data);
-    
-    //     }
-    //     //---------------------------------------------GET TOTAL RETURN FROM DATABASE-------------------------------------------
-    //     const getTotalReturn = async (e) => {
-    //         const res = await fetch('/TotalReturn', {
-    //             method: "GET",
-    //             headers: {
-    //                 Accept: "application/json",
-    //                 "Content-Type": "application/json"
-    //             },
-    //         });
-    //         const Data = await res.json();
-    //         setTotalReturn(Data);
-    
-    //     }
-    //     //---------------------------------------------GET TOTAL RETURN FROM DATABASE-------------------------------------------
-    //     const getTotalCredit = async (e) => {
-    //         const res = await fetch('/TotalCredit', {
-    //             method: "GET",
-    //             headers: {
-    //                 Accept: "application/json",
-    //                 "Content-Type": "application/json"
-    //             },
-    //         });
-    //         const Data = await res.json();
-    //         setTotalCredit(Data);
-    
-    //     }
+
     return (
         <div className="main">
             <Sidebar />

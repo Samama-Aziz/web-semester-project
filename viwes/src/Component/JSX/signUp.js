@@ -39,10 +39,17 @@ const Signup = () => {
   
       if (res.status === 422 || !data) {
         window.alert(data.error); // Provide a generic error message
-      } else {
+      } 
+      if (res.status === 500 ) 
+      {
+        window.alert(data.error); // Provide a generic error message
+      }
+      else{
+
         window.alert("Registration Successful");
         navigate("/");
       }
+      
   
       setLoading(false); // Set loading to false after the registration process is complete
       setClicked(false); // Reset the button click state

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from '../Images/logo.jpeg'
 import { Icon } from 'react-icons-kit'
 import { eye } from 'react-icons-kit/feather/eye'
@@ -8,7 +8,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
-
+  
   const [type, setType] = useState('password');
   const [icon, setIcon] = useState(eyeOff);
   const [email, setemail] = useState('');
@@ -27,6 +27,7 @@ const Login = () => {
   }
 
   const Userlogin = async (e) => {
+
     e.preventDefault();
     if (!clicked) {
       setClicked(true);
@@ -50,6 +51,7 @@ const Login = () => {
         navigate("/");
       } else {
         window.alert("Sign in Successful");
+        localStorage.setItem("user", data.userId); 
         navigate("/dashboard");
       }
   
