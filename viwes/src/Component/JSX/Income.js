@@ -78,6 +78,7 @@ const Income = () => {
     
             const data = await res.json();
             setIncome(data);
+            setSearch("");  
         } catch (err) {
             console.error("Error fetching search income data:", err);
         }
@@ -87,7 +88,6 @@ const Income = () => {
         try {
             const { Income_Source, price, date } = incomeData;
             const userid = localStorage.getItem("user");
-            window.alert(userid);
             const res = await fetch('/addincome', {
                 method: "POST",
                 headers: {
@@ -180,8 +180,8 @@ const Income = () => {
                                     <input type="text" id='Income_Source' name='Income_Source' autoComplete='off' required placeholder='Enter income source' className='text-input' value={incomeData.Income_Source} onChange={handleIncomeInputs} />
                                 </div>
                                 <div className="input-container">
-                                    <label htmlFor="price" className='label'>Price<span>*</span></label>
-                                    <input type='number' id='price' name='price' autoComplete='off' required placeholder='Enter price' className='text-input' value={incomeData.price} onChange={handleIncomeInputs} />
+                                    <label htmlFor="price" className='label'>Amount<span>*</span></label>
+                                    <input type='number' id='price' name='price' autoComplete='off' required placeholder='Enter amount' className='text-input' value={incomeData.price} onChange={handleIncomeInputs} />
                                 </div>
                                 <div className="input-container">
                                     <label htmlFor="date" className='label'>Date<span>*</span></label>
@@ -201,7 +201,7 @@ const Income = () => {
                                                 <th>ID</th>
                                                 <th>User ID</th>
                                                 <th>Source</th>
-                                                <th>Price</th>
+                                                <th>Amount</th>
                                                 <th>Date</th>
                                             </tr>
                                         </thead>
@@ -237,13 +237,13 @@ const Income = () => {
                                 <div className="input-container">
                                     <label htmlFor="Income_Source" className='label'>
                                         Income Source<span>*</span></label>
-                                    <input type="text" id='Income_Source' name='Income_Source' autoComplete='off' required placeholder='Enter sale id'
+                                    <input type="text" id='Income_Source' name='Income_Source' autoComplete='off' required placeholder='Enter source'
                                         className='text-input' value={updateIncomeData.Income_Source} onChange={handleUpdateInputs} />
                                 </div>
                                 <div className="input-container">
                                     <label htmlFor="price" className='label'>
-                                        Price<span>*</span></label>
-                                    <input type='number' id='price' name='price' autoComplete='off' required placeholder='Enter stock name'
+                                        Amount<span>*</span></label>
+                                    <input type='number' id='price' name='price' autoComplete='off' required placeholder='Enter amount'
                                         className='text-input' value={updateIncomeData.price} onChange={handleUpdateInputs} />
                                 </div>
                                 <div className="input-container">
@@ -265,7 +265,7 @@ const Income = () => {
                                                 <th>ID</th>
                                                 <th>User ID</th>
                                                 <th>Source</th>
-                                                <th>Price</th>
+                                                <th>Amount</th>
                                                 <th>Date</th>
                                             </tr>
                                         </thead>

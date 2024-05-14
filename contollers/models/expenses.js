@@ -18,4 +18,4 @@ const userScheam = new mongeese.Schema({
         required:true
     }
 });
-module.exports = mongeese.model('Income',userScheam);
+module.exports = mongeese.model('expenses',userScheam);

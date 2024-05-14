@@ -1,11 +1,59 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import '../CSS/Shop.css';
 
 const Dashboard = () => {
-    const navigate = useNavigate();
+    const [totalincome, settotleincome] = useState(0);
+    const [totalexpenses, settotalexpenses] = useState(0);
+    const [totalinvestments, settotalinvestments] = useState(0);
+    useEffect(() => {
+        gettotalincome();
+        gettotalexpenses();
+        gettotalinvestments();
+        console.log("totalincome", totalincome);
+        console.log("totalexpenses", totalexpenses);
+        console.log("totalinvestments", totalinvestments);
+    }, []);
 
+    const gettotalincome = async () => {
+        let result = await fetch("/totalincome"
+            , {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify({ userid: localStorage.getItem("user") })
+            });
+        result = await result.json();
+        settotleincome(result);
+    }
+    const gettotalexpenses = async () => {
+        let result = await fetch("/totalexpenses"
+            , {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify({ userid: localStorage.getItem("user") })
+            });
+        result = await result.json();
+        settotalexpenses(result);
+    }
+    const gettotalinvestments = async () => {
+        let result = await fetch("/totalinvestments"
+            , {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify({ userid: localStorage.getItem("user") })
+            });
+        result = await result.json();
+        settotalinvestments(result);
+    }
 
     return (
         <div className="main">
@@ -27,7 +75,7 @@ const Dashboard = () => {
 
                             <div class="ag-courses-item_date-box">
                                 <h2 class="ag-courses-item_date">
-                                Rs.15000
+                                Rs.{totalincome?totalincome:0}
                                 </h2>
                             </div>
                         </div>
@@ -42,7 +90,7 @@ const Dashboard = () => {
 
                             <div class="ag-courses-item_date-box">
                                 <h2 class="ag-courses-item_date">
-                                Rs.2500
+                                Rs.{totalexpenses?totalexpenses:0}
                                 </h2>
                             </div>
                         </div>
@@ -57,7 +105,7 @@ const Dashboard = () => {
 
                             <div class="ag-courses-item_date-box">
                                 <h2 class="ag-courses-item_date">
-                                Rs.3500
+                                Rs.{totalinvestments?totalinvestments:0}
                                 </h2>
                             </div>
                         </div>
@@ -72,7 +120,8 @@ const Dashboard = () => {
 
                             <div class="ag-courses-item_date-box">
                                 <h2 class="ag-courses-item_date">
-                                    Rs.14520
+                                Rs.{totalincome - (totalexpenses+ totalinvestments)}
+
                                 </h2>
                             </div>
                         </div>

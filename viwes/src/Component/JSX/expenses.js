@@ -1,47 +1,47 @@
 import React, { useState, useEffect } from 'react';
-import Sidebar from './Sidebar';
 import SearchIcon from '@mui/icons-material/Search';
 import '../CSS/Shop.css';
+import Sidebar from './Sidebar';
 
-const Income = () => {
+const Expenses = () => {
     const [toggleState, setToggleState] = useState(1);
-    const [Income, setIncome] = useState([]);
+    const [expenses, setExpenses] = useState([]);
     const [search, setSearch] = useState('');
-    const [incomeId, setIncomeId] = useState('');
-    const [incomeData, setIncomeData] = useState({
-        Income_Source: "",
+    const [expensesId, setExpensesId] = useState('');
+    const [expensesData, setExpensesData] = useState({
+        note: "",
         price: '',
         date: ""
     });
-    const [updateIncomeData, setUpdateIncomeData] = useState({
+    const [updateexpensesData, setUpdateExpensesData] = useState({
         _id: "",
-        Income_Source: "",
+        note: "",
         price:'',
         date: ""
     });
 
     useEffect(() => {
-        getIncomeData();
+        getexpensesData();
 
     }, []);
 
     const handleIncomeInputs = (e) => {
         const { name, value } = e.target;
-        setIncomeData({ ...incomeData, [name]: value });
+        setExpensesData({ ...expensesData, [name]: value });
     };
 
     const handleUpdateInputs = (e) => {
         const { name, value } = e.target;
-        setUpdateIncomeData({ ...updateIncomeData, [name]: value });
+        setUpdateExpensesData({ ...updateexpensesData, [name]: value });
     };
 
     const toggleTab = (index) => {
         setToggleState(index);
     };
 
-    const getIncomeData = async () => {
+    const getexpensesData = async () => {
         try {
-            const res = await fetch('/getincome', {
+            const res = await fetch('/getexpenses', {
                 method: "POST",
                 headers: {
                     Accept: "application/json",
@@ -55,15 +55,15 @@ const Income = () => {
             }
     
             const data = await res.json() ;
-            setIncome(data);
+            setExpenses(data);
         } catch (err) {
             console.error("Error fetching income data:", err);
         }
     };
-    const getSearchIncomeData = async () => {
+    const getSearchexpensesData = async () => {
         try {
             const searchQuery = search;
-            const res = await fetch('/searchIncomedata', {
+            const res = await fetch('/searchexpensesdata', {
                 method: "POST",
                 headers: {
                     Accept: "application/json",
@@ -77,29 +77,29 @@ const Income = () => {
             }
     
             const data = await res.json();
-            setIncome(data);
+            setExpenses(data);
+            setSearch("");
         } catch (err) {
             console.error("Error fetching search income data:", err);
         }
     };
-    const addIncome = async (e) => {
+    const addexpenses = async (e) => {
         e.preventDefault();
         try {
-            const { Income_Source, price, date } = incomeData;
+            const { note, price, date } = expensesData;
             const userid = localStorage.getItem("user");
-            window.alert(userid);
-            const res = await fetch('/addincome', {
+            const res = await fetch('/addexpenses', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ userid, Income_Source, price, date })
+                body: JSON.stringify({ userid, note, price, date })
             });
             const data = await res.json();
             if (res.status === 201) {
                 window.alert("Added Successfully");
-                setIncomeData({ Income_Source: "", price: '', date: "" });
-                getIncomeData();
+                setExpensesData({ note: "", price: '', date: "" });
+                getexpensesData();
             } else {
                 window.alert("Please fill all the fields properly");
             }
@@ -109,22 +109,22 @@ const Income = () => {
         }
     };
 
-    const updateIncome = async (e) => {
+    const updateexpenses = async (e) => {
         e.preventDefault();
         try {
-            const { _id, Income_Source, price, date } = updateIncomeData;
-            const res = await fetch('/updateincome', {
+            const { _id, note, price, date } = updateexpensesData;
+            const res = await fetch('/updateexpenses', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ _id, Income_Source, price, date })
+                body: JSON.stringify({ _id, note, price, date })
             });
             const data = await res.json();
             if (res.status === 200) {
                 window.alert("Updated Successfully");
-                setUpdateIncomeData({ _id: "", Income_Source: "", price: 0, date: "" });
-                getIncomeData();
+                setUpdateExpensesData({ _id: "", note: "", price: 0, date: "" });
+                getexpensesData();
             } else if (res.status === 422 || res.status === 406 || !data) {
                 window.alert("Error: " + data.message);
             }
@@ -134,11 +134,11 @@ const Income = () => {
         }
     };
 
-    const deleteIncome = async (e) => {
+    const deleteexpenses = async (e) => {
         e.preventDefault();
-        const _id = incomeId;
+        const _id = expensesId;
         try {
-            const res = await fetch('/deleteincome', {
+            const res = await fetch('/deleteexpenses', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -148,8 +148,8 @@ const Income = () => {
             const data = await res.json();
             if (res.status === 200) {
                 window.alert("Deleted Successfully");
-                setIncomeId("");
-                getIncomeData();
+                setExpensesId("");
+                getexpensesData();
             } else if (res.status === 422 || res.status === 400 || !data) {
                 window.alert("Error: " + data.message);
             }
@@ -165,34 +165,34 @@ const Income = () => {
                 <Sidebar />
                 <div className="pagedata">
                     <div className="title">
-                        <h2>Income</h2>
+                        <h2>Expenses</h2>
                     </div>
                     <div className="navlinks">
                         <button className={toggleState === 1 ? "active-tabs" : "Tab-btn"} onClick={() => { toggleTab(1); }}>Add</button>
-                        <button className={toggleState === 2 ? "active-tabs" : "Tab-btn"} onClick={() => { toggleTab(2); getIncomeData(); }}>Update</button>
-                        <button className={toggleState === 3 ? "active-tabs" : "Tab-btn"} onClick={() => { toggleTab(3); getIncomeData(); }}>Delete</button>
+                        <button className={toggleState === 2 ? "active-tabs" : "Tab-btn"} onClick={() => { toggleTab(2); getexpensesData(); }}>Update</button>
+                        <button className={toggleState === 3 ? "active-tabs" : "Tab-btn"} onClick={() => { toggleTab(3); getexpensesData(); }}>Delete</button>
                     </div>
                     <div className="content-container">
                         <div className="content">
                             <div className={toggleState === 1 ? "active1" : "non-active1"}>
                                 <div className="input-container">
-                                    <label htmlFor="Income_Source" className='label'>Income Source<span>*</span></label>
-                                    <input type="text" id='Income_Source' name='Income_Source' autoComplete='off' required placeholder='Enter income source' className='text-input' value={incomeData.Income_Source} onChange={handleIncomeInputs} />
+                                    <label htmlFor="note" className='label'>Note<span>*</span></label>
+                                    <input type="text" id='note' name='note' autoComplete='off' required placeholder='Enter note' className='text-input' value={expensesData.note} onChange={handleIncomeInputs} />
                                 </div>
                                 <div className="input-container">
-                                    <label htmlFor="price" className='label'>Price<span>*</span></label>
-                                    <input type='number' id='price' name='price' autoComplete='off' required placeholder='Enter price' className='text-input' value={incomeData.price} onChange={handleIncomeInputs} />
+                                    <label htmlFor="price" className='label'>Amount<span>*</span></label>
+                                    <input type='number' id='price' name='price' autoComplete='off' required placeholder='Enter amount' className='text-input' value={expensesData.price} onChange={handleIncomeInputs} />
                                 </div>
                                 <div className="input-container">
                                     <label htmlFor="date" className='label'>Date<span>*</span></label>
-                                    <input type="date" id='date' name='date' className='text-input' value={incomeData.date} onChange={handleIncomeInputs} />
+                                    <input type="date" id='date' name='date' className='text-input' value={expensesData.date} onChange={handleIncomeInputs} />
                                 </div>
-                                <button type="submit" className='submit-btn' onClick={addIncome}>Add Income</button>
+                                <button type="submit" className='submit-btn' onClick={addexpenses}>Add Expens</button>
                             </div>
                             <div className={toggleState === 2 ? "active2" : "non-active1"}>
                                 <div className="search_bar">
                                     <input type="text" className='search' name='search' value={search} onChange={(e) => setSearch(e.target.value)} autoComplete='off' placeholder='Search..' />
-                                    <button className='search_btn' onClick={getSearchIncomeData}><SearchIcon /></button>
+                                    <button className='search_btn' onClick={getSearchexpensesData}><SearchIcon /></button>
                                 </div>
                                 <div className="table-container">
                                     <table>
@@ -200,29 +200,29 @@ const Income = () => {
                                             <tr>
                                                 <th>ID</th>
                                                 <th>User ID</th>
-                                                <th>Source</th>
-                                                <th>Price</th>
+                                                <th>Note</th>
+                                                <th>Amount</th>
                                                 <th>Date</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        {Income === undefined ? (
+                                        {expenses === undefined ? (
     <tr>
         <td colSpan="5">Loading...</td>
     </tr>
-) : Income.length > 0 ? (
-    Income.map((element, index) => (
+) : expenses.length > 0 ? (
+    expenses.map((element, index) => (
         <tr key={index}>
             <td>{element._id}</td>
             <td>{element.userid}</td>
-            <td>{element.Income_Source}</td>
+            <td>{element.note}</td>
             <td>Rs.{element.price}</td>
             <td>{element.date}</td>
         </tr>
     ))
 ) : (
     <tr>
-        <td colSpan="5">No income data available</td>
+        <td colSpan="5">No   data available</td>
     </tr>
 )}
 </tbody>
@@ -230,33 +230,33 @@ const Income = () => {
                                 </div>
 
                                 <div className="input-container">
-                                    <label htmlFor="_id" className='label'>Income ID<span>*</span></label>
-                                    <input type="text" id='_id' name='_id' autoComplete='off' placeholder='Enter icome id'
-                                        className='text-input' value={updateIncomeData._id} onChange={handleUpdateInputs} />
+                                    <label htmlFor="_id" className='label'>Expens ID<span>*</span></label>
+                                    <input type="text" id='_id' name='_id' autoComplete='off' placeholder='Enter expens id'
+                                        className='text-input' value={updateexpensesData._id} onChange={handleUpdateInputs} />
                                 </div>
                                 <div className="input-container">
-                                    <label htmlFor="Income_Source" className='label'>
-                                        Income Source<span>*</span></label>
-                                    <input type="text" id='Income_Source' name='Income_Source' autoComplete='off' required placeholder='Enter sale id'
-                                        className='text-input' value={updateIncomeData.Income_Source} onChange={handleUpdateInputs} />
+                                    <label htmlFor="note" className='label'>
+                                        Note<span>*</span></label>
+                                    <input type="text" id='note' name='note' autoComplete='off' required placeholder='Enter note'
+                                        className='text-input' value={updateexpensesData.mote} onChange={handleUpdateInputs} />
                                 </div>
                                 <div className="input-container">
                                     <label htmlFor="price" className='label'>
-                                        Price<span>*</span></label>
-                                    <input type='number' id='price' name='price' autoComplete='off' required placeholder='Enter stock name'
-                                        className='text-input' value={updateIncomeData.price} onChange={handleUpdateInputs} />
+                                        Amount<span>*</span></label>
+                                    <input type='number' id='price' name='price' autoComplete='off' required placeholder='Enter amount'
+                                        className='text-input' value={updateexpensesData.price} onChange={handleUpdateInputs} />
                                 </div>
                                 <div className="input-container">
                                     <label htmlFor="date" className='label'>Date<span>*</span></label>
                                     <input type="date" id='date' name='date'
-                                        className='text-input' value={updateIncomeData.date} onChange={handleUpdateInputs} />
+                                        className='text-input' value={updateexpensesData.date} onChange={handleUpdateInputs} />
                                 </div>
-                                <button type="submit" className='submit-btn' onClick={updateIncome}>Update Income</button>
+                                <button type="submit" className='submit-btn' onClick={updateexpenses}>Update Expens</button>
                             </div>
                             <div className={toggleState === 3 ? "active3" : "non-active1"}>
                                 <div className="search_bar">
                                     <input type="text" className='search' name='search' value={search} onChange={(e) => setSearch(e.target.value)} autoComplete='off' placeholder='Search..' />
-                                    <button className='search_btn' onClick={getSearchIncomeData}><SearchIcon /></button>
+                                    <button className='search_btn' onClick={getSearchexpensesData}><SearchIcon /></button>
                                 </div>
                                 <div className="table-container">
                                     <table>
@@ -264,29 +264,29 @@ const Income = () => {
                                             <tr>
                                                 <th>ID</th>
                                                 <th>User ID</th>
-                                                <th>Source</th>
-                                                <th>Price</th>
+                                                <th>Note</th>
+                                                <th>Amount</th>
                                                 <th>Date</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        {Income === undefined ? (
+                                        {expenses === undefined ? (
     <tr>
         <td colSpan="5">Loading...</td>
     </tr>
-) : Income.length > 0 ? (
-    Income.map((element, index) => (
+) : expenses.length > 0 ? (
+    expenses.map((element, index) => (
         <tr key={index}>
             <td>{element._id}</td>
             <td>{element.userid}</td>
-            <td>{element.Income_Source}</td>
+            <td>{element.note}</td>
             <td>Rs.{element.price}</td>
             <td>{element.date}</td>
         </tr>
     ))
 ) : (
     <tr>
-        <td colSpan="5">No income data available</td>
+        <td colSpan="5">No expens data available</td>
     </tr>
 )}
 </tbody>
@@ -295,10 +295,10 @@ const Income = () => {
                                 </div>
 
                                 <div className="input-container">
-                                    <label htmlFor="_id" className='label'>Income ID<span>*</span></label>
-                                    <input type="text" id='_id' name='_id' autoComplete='off' placeholder='Enter income id' className='text-input' value={incomeId} onChange={(e) => setIncomeId(e.target.value)} />
+                                    <label htmlFor="_id" className='label'>Expens ID<span>*</span></label>
+                                    <input type="text" id='_id' name='_id' autoComplete='off' placeholder='Enter expens id' className='text-input' value={expensesId} onChange={(e) => setExpensesId(e.target.value)} />
                                 </div>
-                                <button type="submit" className='submit-btn' onClick={deleteIncome}>Delete Income</button>
+                                <button type="submit" className='submit-btn' onClick={deleteexpenses}>Delete Expens</button>
                             </div>
                         </div>
                     </div>
@@ -308,4 +308,4 @@ const Income = () => {
     );
 };
 
-export default Income;
+export default Expenses;

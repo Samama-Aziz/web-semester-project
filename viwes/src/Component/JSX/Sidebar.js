@@ -2,15 +2,14 @@ import "../CSS/Sidebar.css";
 import React from 'react';
 import logo from '../Images/logo.jpeg'
 import { NavLink } from "react-router-dom";
-import { Dashboard, AttachMoney, Payment, TrendingUp, AccountBalanceWallet, Assessment, Person, ExitToApp } from '@mui/icons-material';
-
+import { Dashboard, AttachMoney, Payment,Description, TrendingUp, AccountBalanceWallet, Assessment, Person, ExitToApp } from '@mui/icons-material';
 function App() {
   return (
     <div className="App">
       <div className="sidebar_container">
         <div className="sidebar">
           <div className="profile">
-            <NavLink to='/'>
+            <NavLink to='/dashboard'>
               <img className="Logo"
                 src={logo}
                 alt="profile_img"
@@ -33,13 +32,10 @@ function App() {
               </NavLink>
             </div>
             <div className="group">
-              <NavLink to='/accounts' className='nav-links'>
-                <AccountBalanceWallet className="icon" style={{ color: 'white' }} /><span>Accounts</span>
-              </NavLink>
-              <NavLink to='/reports' className='nav-links'>
-                <Assessment className="icon" style={{ color: 'white' }} /> <span>Reports</span>
-              </NavLink>
-            </div>
+            <NavLink to='/records' className='nav-links'>
+    <Description className="icon" style={{ color: 'white' }} /><span>Records</span>
+</NavLink>
+</div>
             <div className="group">
               <NavLink to='/Profile' className='nav-links'>
                 <Person className="icon" style={{ color: 'white' }} /><span>Profile</span>

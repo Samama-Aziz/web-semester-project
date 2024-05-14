@@ -7,9 +7,11 @@ const Profile = () => {
     const [userData, setUserData] = useState({
         Name: '',
         email: '',
+        profilePic: '',
         phone: ''
     });
     const [error, setError] = useState(null);
+    const [image, setimage] = useState(null);
 
     useEffect(() => {
         callProfilePage();
@@ -46,7 +48,6 @@ const Profile = () => {
             ...prevUserData,
             [name]: value
         }));
-        console.log(userData);
     };
 
     const handleUpdateProfile = async () => {
@@ -61,6 +62,7 @@ const Profile = () => {
                     _id: localStorage.getItem("user"),
                     Name: userData.Name,
                     email: userData.email,
+                    profilePic: image?image: userData.profilePic,
                     phone: userData.phone
                 })
             });
@@ -88,6 +90,43 @@ const Profile = () => {
                 <div className="content-container">
                     <div className="content">
                         <div className={"active1"}>
+                        <div className="profile-pic" style={{
+                            display
+    : 'flex',
+
+      width: '100%',
+      height: '100px',
+      overflow: 'hidden',
+      alignItems:'center',
+      justifyContent:'center'
+    }}>
+      <img
+        src={userData.profilePic?userData.profilePic:"https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png" }
+        alt="profile-pic"
+        style={{
+          width: '100px',
+          height: '100px',
+          borderRadius: '50%',
+          alignItems:'center',
+        }}
+        />
+    </div>
+                            <div className="input-container">
+                                <label htmlFor="profilePic" className='label'>
+                                    Profile Image<span>*</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    id='profilePic'
+                                    name='profilePic'
+                                    autoComplete='off'
+                                    required
+                                    placeholder='Enter image link'
+                                    className='text-input'
+                                    value={userData.profilePic}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
                             <div className="input-container">
                                 <label htmlFor="name" className='label'>
                                     User Name<span>*</span>

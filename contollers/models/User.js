@@ -18,6 +18,10 @@ const userScheam = new mongose.Schema({
         type: String,
         required:true
     },
+    profilePic:{
+        type: String, 
+        default: ""
+    },
     tokens:[
         {
             token:{
